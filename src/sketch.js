@@ -6,13 +6,17 @@ let ceils;
 let stat;
 let haveVirus;
 
+let SimulationHeight = 500;
+let SimulationWidth  = 500;
+let GraphicsHeight = 250;
+
 function setup() {
-    createCanvas(500, 650);
+    createCanvas(SimulationWidth + 700, SimulationHeight);
 
     cols = 51;
     rows = 51;
-    onecol = width / cols;
-    onerow = (height - 150) / rows;
+    onecol = SimulationWidth / cols;
+    onerow = SimulationHeight / rows;
 
     ceils = [];
     for (let i = 0; i < rows; ++i) {
@@ -69,18 +73,18 @@ function draw() {
             stroke(30);
 
             for (let i = 0; i <= rows; ++i) {
-                line(0, i * onerow, width, i * onerow);
+                line(0, i * onerow, SimulationWidth, i * onerow);
             }
 
             for (let j = 0; j <= cols; ++j) {
-                line(j * onecol, 0, j * onecol, height - 150);
+                line(j * onecol, 0, j * onecol, SimulationHeight);
             }
         }
 
-        let iteration = float(stat.length / width);
+        let iteration = float(stat.length / (width - SimulationWidth));
         for (let i = 0.0; i < stat.length; i += iteration) {
             let it = round(i);
-            stat[it >= stat.length ? stat.length - 1 : it].draw(150, i / iteration);
+            stat[it >= stat.length ? stat.length - 1 : it].draw(GraphicsHeight, i / iteration);
         }
     }
 
