@@ -77,14 +77,10 @@ function draw() {
             }
         }
 
-        let onePart = width / stat.length;
-        let iter = 1;
-        if (stat.length > 500) {
-            iter = int(stat.length / 300);
-            onePart = width / (stat.length / iter);
-        }
-        for (let i = 0; i < stat.length; i += iter) {
-            stat[i].draw(onePart, 150, i / iter);
+        let iteration = float(stat.length / width);
+        for (let i = 0.0; i < stat.length; i += iteration) {
+            let it = round(i);
+            stat[it >= stat.length ? stat.length - 1 : it].draw(150, i / iteration);
         }
     }
 
